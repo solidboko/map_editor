@@ -5,6 +5,6 @@ Feel free to take anything from this and to give credit if you want to only.
 
 # Dependencies
 
-Gosu
-OpenGL
+Gosu\n
+OpenGL\n
 Glu

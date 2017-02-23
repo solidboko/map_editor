@@ -18,25 +18,40 @@ class Tileset
 	end
 
 	def display_background_tiles(draw_x, draw_y)
-		# here we'll display animated tiles and autotiles
+		# animated tiles
+
+		# autotiles
+		draw_tile_xy(0, 8, draw_x * @tile_size, draw_y + 1 * @tile_size)
+		draw_tile_xy(3, 8, draw_x + 1 * @tile_size, draw_y + 1 * @tile_size)
+		draw_tile_xy(0, 12, draw_x + 2 * @tile_size, draw_y + 1 * @tile_size)
+		draw_tile_xy(3, 12, draw_x + 3 * @tile_size, draw_y + 1 * @tile_size)
+		draw_tile_xy(6, 0, draw_x + 4 * @tile_size, draw_y + 1 * @tile_size)
+		draw_tile_xy(9, 0, draw_x + 5 * @tile_size, draw_y + 1 * @tile_size)
+		
+		draw_tile_xy(6, 4, draw_x * @tile_size, draw_y + 2 * @tile_size)
+		draw_tile_xy(9, 4, draw_x + 1 * @tile_size, draw_y + 2 * @tile_size)
+		draw_tile_xy(6, 8, draw_x + 2 * @tile_size, draw_y + 2 * @tile_size)
+		draw_tile_xy(9, 8, draw_x + 3 * @tile_size, draw_y + 2 * @tile_size)
+		draw_tile_xy(6, 12, draw_x + 4 * @tile_size, draw_y + 2 * @tile_size)
+		draw_tile_xy(9, 12, draw_x + 5 * @tile_size, draw_y + 2 * @tile_size)
 
 		# static tiles
-		x, y = 0, 4
+		x, y = 0, 3
 		for x_tileset in 12..17
 			for y_tileset in 0..15
 				draw_tile_xy(x_tileset, y_tileset, draw_x + x * @tile_size, draw_y + y * @tile_size)
 				y += 1
 			end	
-			y = 4
+			y = 3
 			x += 1
 		end
-		x, y = 0, 20
+		x, y = 0, 19
 		for x_tileset in 18..23
 			for y_tileset in 0..7
 				draw_tile_xy(x_tileset, y_tileset, draw_x + x * @tile_size, draw_y + y * @tile_size)
 				y += 1
 			end	
-			y = 20
+			y = 19
 			x += 1
 		end
 	end

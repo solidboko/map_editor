@@ -4,20 +4,26 @@
 =end
 
 class Tileset
-	def initialize(filename, tile_size)
+	attr_reader :offset_x, :offset_y, :tiles
+	def initialize(filename, tile_size, offset_x = 0, offset_y = 0)
+		@offset_x, @offset_y = offset_x, offset_y
 		filename = "source/gfx/chipsets/#{filename}.png"
 		@tiles = Gosu::Image.load_tiles(filename, tile_size, tile_size, :retro=>true)
 		@tiles_in_width = 30
-		@tiles_in_height = 16
 		@tile_size = tile_size
 	end
 
+	def get_tile_from_coords(x, y)
+		(y * @tiles_in_width + x)
+	end
+
 	def draw_tile_xy(x_tileset, y_tileset, draw_x, draw_y, draw_z = 0)
-		tile_to_draw = y_tileset * @tiles_in_width + x_tileset
+		tile_to_draw = get_tile_from_coords(x_tileset, y_tileset)
 		@tiles[tile_to_draw].draw(draw_x, draw_y, draw_z)
 	end
 
-	def display_upper_layer_tiles(draw_x, draw_y)
+	def display_upper_layer_tiles
+		draw_x, draw_y = @offset_x, @offset_y
 		color = Gosu::Color.new(255, 231, 0, 123)
 		Gosu::draw_rect(draw_x, draw_y, 6 * @tile_size, 24 * @tile_size, color)
 		# static tiles
@@ -41,7 +47,8 @@ class Tileset
 		end
 	end
 
-	def display_lower_layer_tiles(draw_x, draw_y)
+	def display_lower_layer_tiles
+		draw_x, draw_y = @offset_x, @offset_y
 		# animated tiles		
 		draw_tile_xy(0, 0, draw_x, draw_y)
 		draw_tile_xy(3, 0, draw_x + 1 * @tile_size, draw_y)

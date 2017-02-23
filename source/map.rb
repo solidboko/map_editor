@@ -25,20 +25,31 @@ class Map
 				tile_x = ((@window.mouse_x - @tileset.offset_x) / @tile_size).floor
 				tile_y = ((@window.mouse_y - @tileset.offset_y) / @tile_size).floor
 				@window.caption = [tile_x, tile_y].inspect
-				if @current_layer == :lower
-					# autotiles + animated tiles
-					if tile_y < 3
-
-					else
-						if tile_y <= 18
-							@current_tile = @tileset.get_tile_from_coords(tile_x + 12, tile_y - 3)
-						else
-							@current_tile = @tileset.get_tile_from_coords(tile_x + 18, tile_y - 19)
-						end
-					end
-				end
+				@current_tile = get_tile_from_position(tile_x, tile_y)
 			end
 		end
+	end
+
+	def get_tile_from_position(tile_x, tile_y)
+		if @current_layer == :lower
+			# autotiles + animated tiles
+			if tile_y < 3
+
+			else
+				if tile_y <= 18
+					current_tile = @tileset.get_tile_from_coords(tile_x + 12, tile_y - 3)
+				else
+					current_tile = @tileset.get_tile_from_coords(tile_x + 18, tile_y - 19)
+				end
+			end
+		elsif @current_layer == :upper
+			if tile_y <= 8
+				current_tile = @tileset.get_tile_from_coords(tile_x + 18, tile_y + 8)
+			else
+				current_tile = @tileset.get_tile_from_coords(tile_x + 24, tile_y - 8)
+			end
+		end
+		return current_tile
 	end
 
 	def update

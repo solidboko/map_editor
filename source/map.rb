@@ -2,12 +2,23 @@ class Map
 	def initialize
 		@tiles = Hash.new
 		@width = 20
-		@height = 15
+		@length = 15
+		@tileset = Tileset.new('World', 16)
+	end
 
-		for x in 0..@width
-			for y in 0..@height
-				@tiles[[x, y]] = -1
-			end
-		end
+	def button_down(id)
+
+	end
+
+	def update
+
+	end
+
+	def draw_tileset
+		@tileset.display_background_tiles(0, 0)
+	end
+
+	def draw
+		draw_tileset
 	end
 end

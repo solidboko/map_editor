@@ -18,7 +18,13 @@ class Tileset
 	end
 
 	def display_background_tiles(draw_x, draw_y)
-		# animated tiles
+		# animated tiles		
+		draw_tile_xy(0, 0, draw_x * @tile_size, draw_y * @tile_size)
+		draw_tile_xy(3, 0, draw_x + 1 * @tile_size, draw_y * @tile_size)
+		draw_tile_xy(1, 6, draw_x + 2 * @tile_size, draw_y * @tile_size)
+		draw_tile_xy(3, 4, draw_x + 3 * @tile_size, draw_y * @tile_size)
+		draw_tile_xy(4, 4, draw_x + 4 * @tile_size, draw_y * @tile_size)
+		draw_tile_xy(5, 4, draw_x + 5 * @tile_size, draw_y * @tile_size)
 
 		# autotiles
 		draw_tile_xy(0, 8, draw_x * @tile_size, draw_y + 1 * @tile_size)

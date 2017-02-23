@@ -15,7 +15,7 @@ class Map
 	end
 
 	def draw_tileset
-		@tileset.display_background_tiles(0, 0)
+		@tileset.display_upper_layer_tiles(20, 20)
 	end
 
 	def draw
